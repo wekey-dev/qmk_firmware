@@ -256,6 +256,10 @@ ifneq ($(strip $(EEPROM_DRIVER)),none)
           OPT_DEFS += -DEEPROM_DRIVER -DEEPROM_TRANSIENT
           SRC += eeprom_driver.c eeprom_transient.c
         endif
+      else ifeq ($(PLATFORM),NRF)
+        # nRF52 app image: EEPROM emulated by the core
+        OPT_DEFS += -DEEPROM_DRIVER -DEEPROM_CUSTOM
+        SRC += eeprom_driver.c $(PLATFORM_PATH)/nrf/eeprom_nrf_core.c
       else ifeq ($(PLATFORM),TEST)
         # Test harness "EEPROM"
         OPT_DEFS += -DEEPROM_TEST_HARNESS

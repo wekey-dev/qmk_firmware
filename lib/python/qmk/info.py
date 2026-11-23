@@ -9,7 +9,7 @@ from enum import IntFlag
 
 from milc import cli
 
-from qmk.constants import COL_LETTERS, ROW_LETTERS, CHIBIOS_PROCESSORS, LUFA_PROCESSORS, VUSB_PROCESSORS, JOYSTICK_AXES
+from qmk.constants import COL_LETTERS, ROW_LETTERS, CHIBIOS_PROCESSORS, LUFA_PROCESSORS, VUSB_PROCESSORS, NRF_PROCESSORS, JOYSTICK_AXES
 from qmk.c_parse import find_layouts, parse_config_h_file, find_led_config
 from qmk.json_schema import deep_update, json_load, validate
 from qmk.keyboard import config_h, rules_mk
@@ -747,6 +747,9 @@ def _extract_rules_mk(info_data, rules):
     elif info_data['processor'] in LUFA_PROCESSORS + VUSB_PROCESSORS:
         avr_processor_rules(info_data, rules)
 
+    elif info_data['processor'] in NRF_PROCESSORS:
+        nrf_processor_rules(info_data, rules)
+
     else:
         cli.log.warning("%s: Unknown MCU: %s" % (info_data['keyboard_folder'], info_data['processor']))
         unknown_processor_rules(info_data, rules)
@@ -990,6 +993,17 @@ def avr_processor_rules(info_data, rules):
 
     # FIXME(fauxpark/anyone): Eventually we should detect the protocol by looking at PROTOCOL inherited from mcu_selection.mk:
     # info_data['protocol'] = 'V-USB' if rules.get('PROTOCOL') == 'VUSB' else 'LUFA'
+
+    return info_data
+
+
+def nrf_processor_rules(info_data, rules):
+    """Setup the default info for an nRF52 app image running on the nRF Core.
+    """
+    info_data['processor_type'] = 'arm'
+    info_data['platform'] = 'NRF52'
+    info_data['platform_key'] = 'nrf'
+    info_data['protocol'] = 'nrf_core'
 
     return info_data
 

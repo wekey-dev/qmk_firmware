@@ -1,0 +1,57 @@
+# Build the WeKey nRF keyboards. Self-contained: the core SDK (ABI headers,
+# memory map) is committed in platforms/nrf/sdk, so the stock QMK container
+# is enough (no Zephyr / NCS). Artifact: the QMK app images (<kb>.uf2); the
+# cores, full images and dongle images come from the core's own build.
+name: wekey nrf
+
+on:
+  push:
+    branches: [wekey]
+    paths:
+      - platforms/nrf/**
+      - tmk_core/protocol/nrf/**
+      - keyboards/wekey/**
+      - quantum/**
+      - drivers/**
+      - builddefs/**
+      - .github/workflows/wekey_nrf.yml
+  pull_request:
+    branches: [wekey]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    container: ghcr.io/qmk/qmk_cli
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Submodules used by the nrf platform
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git submodule update --init --depth 1 lib/printf
+
+      - name: Lint
+        run: |
+          qmk lint -kb wekey/we6k -km default
+          qmk lint -kb wekey/we65i/v2_6 -km default
+          qmk lint -kb wekey/we67lite -km default
+          qmk lint -kb wekey/nrf_dk/nrf52840 -km periph
+
+      - name: Build
+        run: |
+          make -j4 \
+            wekey/we6k:default wekey/we65i/v2_6:default wekey/we67lite:default \
+            wekey/nrf_dk/nrf52840:default wekey/nrf_dk/nrf52833:default \
+            wekey/nrf_dk/nrf52840:periph wekey/nrf_dk/nrf52833:periph
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wekey-qmk
+          path: |
+            *.uf2
+          if-no-files-found: error

@@ -29,6 +29,11 @@
 #    include "process_connection.h"
 #endif
 
+#ifdef PROTOCOL_NRF
+// platforms/nrf/nrf_keycodes.c: connection keycodes (OU_*, BT_*)
+bool process_record_nrf(uint16_t keycode, keyrecord_t *record);
+#endif
+
 #ifdef GRAVE_ESC_ENABLE
 #    include "process_grave_esc.h"
 #endif
@@ -353,6 +358,9 @@ bool process_record_quantum(keyrecord_t *record) {
 #endif
             process_record_modules(keycode, record) && // modules must run before kb
             process_record_kb(keycode, record) &&
+#ifdef PROTOCOL_NRF
+            process_record_nrf(keycode, record) &&
+#endif
 #if defined(VIA_ENABLE)
             process_record_via(keycode, record) &&
 #endif

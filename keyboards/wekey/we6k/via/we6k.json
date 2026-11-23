@@ -1,0 +1,14 @@
+{
+    "name": "we6k",
+    "vendorId": "0x5559",
+    "productId": "0x5247",
+    "keycodes": ["qmk_lighting"],
+    "menus": ["qmk_rgb_matrix"],
+    "matrix": {"rows": 2, "cols": 4},
+    "layouts": {
+        "keymap": [
+            ["0,0", "0,1", "0,2", {"y": 0.5}, "0,3\n\n\n\n\n\n\n\n\ne0"],
+            [{"y": -0.5}, "1,0", "1,1", "1,2"]
+        ]
+    }
+}

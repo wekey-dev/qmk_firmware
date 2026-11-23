@@ -1,0 +1,31 @@
+{
+    "manufacturer": "WeKey",
+    "maintainer": "wekey",
+    "bootloader": "nrf-core",
+    "usb": {
+        "vid": "0x5559",
+        "pid": "0x5244",
+        "device_version": "0.0.1"
+    },
+    "features": {
+        "bootmagic": false,
+        "extrakey": true,
+        "mousekey": false,
+        "nkro": false
+    },
+    "matrix_pins": {
+        "direct": [
+            ["P0_11", "P0_12", "P0_24", "P0_25"]
+        ]
+    },
+    "layouts": {
+        "LAYOUT": {
+            "layout": [
+                {"label": "BTN1", "matrix": [0, 0], "x": 0, "y": 0},
+                {"label": "BTN2", "matrix": [0, 1], "x": 1, "y": 0},
+                {"label": "BTN3", "matrix": [0, 2], "x": 2, "y": 0},
+                {"label": "BTN4", "matrix": [0, 3], "x": 3, "y": 0}
+            ]
+        }
+    }
+}

@@ -151,6 +151,10 @@
                 "type": "string",
                 "pattern": "^GP\\d{1,2}$"
             },
+            {
+                "type": "string",
+                "pattern": "^P[01]_\\d{2}$"
+            },
             {"type": "integer"},
             {"type": "null"}
         ]

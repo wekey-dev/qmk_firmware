@@ -1,0 +1,4 @@
+# KiCad sources of the WeKey keyboards stay outside the repo.
+**/hardware/
+.DS_Store
+**/via/*.layout.json

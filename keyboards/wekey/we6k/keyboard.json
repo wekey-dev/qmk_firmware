@@ -1,0 +1,198 @@
+{
+    "keyboard_name": "we6k",
+    "manufacturer": "WeKey",
+    "maintainer": "wekey",
+    "processor": "nrf52840",
+    "bootloader": "nrf-core",
+    "usb": {
+        "vid": "0x5559",
+        "pid": "0x5247",
+        "device_version": "0.0.1"
+    },
+    "features": {
+        "bootmagic": false,
+        "extrakey": true,
+        "mousekey": true,
+        "nkro": false,
+        "encoder": true,
+        "rgb_matrix": true
+    },
+    "encoder": {
+        "rotary": [
+            {
+                "pin_a": "P0_07",
+                "pin_b": "P0_12"
+            }
+        ]
+    },
+    "indicators": {
+        "caps_lock": "P0_09"
+    },
+    "rgb_matrix": {
+        "driver": "is31fl3731",
+        "max_brightness": 180,
+        "sleep": true,
+        "timeout": 300000,
+        "default": {
+            "val": 120
+        },
+        "animations": {
+            "solid_color": true,
+            "breathing": true,
+            "band_val": true,
+            "cycle_all": true,
+            "cycle_left_right": true,
+            "cycle_up_down": true,
+            "rainbow_moving_chevron": true,
+            "solid_reactive_simple": true,
+            "splash": true
+        },
+        "layout": [
+            {
+                "matrix": [
+                    0,
+                    0
+                ],
+                "x": 0,
+                "y": 0,
+                "flags": 4
+            },
+            {
+                "matrix": [
+                    0,
+                    1
+                ],
+                "x": 75,
+                "y": 0,
+                "flags": 4
+            },
+            {
+                "matrix": [
+                    0,
+                    2
+                ],
+                "x": 149,
+                "y": 0,
+                "flags": 4
+            },
+            {
+                "matrix": [
+                    0,
+                    3
+                ],
+                "x": 224,
+                "y": 32,
+                "flags": 4
+            },
+            {
+                "matrix": [
+                    1,
+                    0
+                ],
+                "x": 0,
+                "y": 64,
+                "flags": 4
+            },
+            {
+                "matrix": [
+                    1,
+                    1
+                ],
+                "x": 75,
+                "y": 64,
+                "flags": 4
+            },
+            {
+                "matrix": [
+                    1,
+                    2
+                ],
+                "x": 149,
+                "y": 64,
+                "flags": 4
+            }
+        ]
+    },
+    "diode_direction": "COL2ROW",
+    "matrix_pins": {
+        "cols": [
+            "P0_31",
+            "P0_29",
+            "P0_02",
+            "P0_15"
+        ],
+        "rows": [
+            "P0_30",
+            "P1_13"
+        ]
+    },
+    "layouts": {
+        "LAYOUT": {
+            "layout": [
+                {
+                    "matrix": [
+                        0,
+                        0
+                    ],
+                    "label": "0,0",
+                    "x": 0,
+                    "y": 0
+                },
+                {
+                    "matrix": [
+                        0,
+                        1
+                    ],
+                    "label": "0,1",
+                    "x": 1,
+                    "y": 0
+                },
+                {
+                    "matrix": [
+                        0,
+                        2
+                    ],
+                    "label": "0,2",
+                    "x": 2,
+                    "y": 0
+                },
+                {
+                    "matrix": [
+                        0,
+                        3
+                    ],
+                    "label": "0,3",
+                    "x": 3,
+                    "y": 0.5
+                },
+                {
+                    "matrix": [
+                        1,
+                        0
+                    ],
+                    "label": "1,0",
+                    "x": 0,
+                    "y": 1
+                },
+                {
+                    "matrix": [
+                        1,
+                        1
+                    ],
+                    "label": "1,1",
+                    "x": 1,
+                    "y": 1
+                },
+                {
+                    "matrix": [
+                        1,
+                        2
+                    ],
+                    "label": "1,2",
+                    "x": 2,
+                    "y": 1
+                }
+            ]
+        }
+    }
+}
